@@ -464,6 +464,9 @@ CONFIG_FILE="$1"
 
       Value['dns']['enable'] = false
 
+      Value['tun'].delete('dns-hijack')
+
+
       File.open('$CONFIG_FILE','w') { |f| YAML.dump(Value, f) }
 
     rescue Exception => e
