@@ -176,7 +176,7 @@ CONFIG_FILE="$1"
           'type'=>'select',
           'include-all'=>true,
           'filter'=>'(🇨🇳|中国|cn|china|CN)',
-          'exclude-filter': '(台湾|tw|taiwan|TW)',
+          'exclude-filter'=>'(台湾|tw|taiwan|TW)',
           'proxies'=>['中国自动选择']
         },
         {
