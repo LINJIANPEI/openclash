@@ -122,7 +122,8 @@ CONFIG_FILE="$1"
     #      File.open('$CONFIG_FILE','w') {|f| YAML.dump(Value, f)};
     #   end" 2>/dev/null >> $LOG_FILE
     
-
+    #ruby_edit "$CONFIG_FILE" "['mixed-port']" "7893"
+    
     ruby -ryaml -rYAML -I "/usr/share/openclash" -E UTF-8 -e "
     begin
       Value = YAML.load_file('$CONFIG_FILE')
@@ -175,6 +176,7 @@ CONFIG_FILE="$1"
           'type'=>'select',
           'include-all'=>true,
           'filter'=>'(🇨🇳|中国|cn|china|CN)',
+          'exclude-filter': '(台湾|tw|taiwan|TW)',
           'proxies'=>['中国自动选择']
         },
         {
@@ -464,8 +466,8 @@ CONFIG_FILE="$1"
 
       Value['dns']['enable'] = false
 
-      Value['tun'].delete('dns-hijack')
-
+      #Value['tun'].delete('dns-hijack')
+      Value['tun']['dns-hijack'] = []
 
       File.open('$CONFIG_FILE','w') { |f| YAML.dump(Value, f) }
 
