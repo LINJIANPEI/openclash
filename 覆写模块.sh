@@ -296,7 +296,8 @@ CONFIG_FILE="$1"
           'include-all'=>true,
           'url'=>'https://cp.cloudflare.com/generate_204',
           'interval'=>300,
-          'tolerance'=>50
+          'tolerance'=>50,
+          'exclude-filter'=>'(自动选择|直连)'
         }
       ]
 
