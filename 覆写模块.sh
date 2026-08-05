@@ -464,11 +464,21 @@ CONFIG_FILE="$1"
             'ip-version'=>'ipv4-prefer'
         }
       )
+      
+      #Value.delete('dns')
+      Value['dns'] = {
+        'enable'=>true,
+        'listen'=>'0.0.0.0:7874',
+        'cache-algorithm'=>'none',
+        'ipv6'=>true,
+        'respect-rules'=>false,
+        'enhanced-mode'=>'redir-host',
+        'nameserver'=>['tcp://127.0.0.1:5591','udp://127.0.0.1:5591'],
+        'default-nameserver'=>['tcp://127.0.0.1:5591','udp://127.0.0.1:5591'],
+        'fallback'=>['tcp://127.0.0.1:5591','udp://127.0.0.1:5591']
+      }
 
-      Value['dns']['enable'] = false
 
-      #Value['tun'].delete('dns-hijack')
-      Value['tun']['dns-hijack'] = []
 
       File.open('$CONFIG_FILE','w') { |f| YAML.dump(Value, f) }
 
