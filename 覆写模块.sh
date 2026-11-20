@@ -301,158 +301,22 @@ CONFIG_FILE="$1"
         }
       ]
 
-      Value['rule-providers'] = {
-      
-        'private_ip'=>{
-          'type'=>'http',
-          'behavior'=>'ipcidr',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.yaml',
-          'path'=>'./rule_provider/private_ip',
-          'interval'=>86400
-        },
-      
-        'private_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.yaml',
-          'path'=>'./rule_provider/private_domain',
-          'interval'=>86400
-        },
-      
-        'bilibili_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.yaml',
-          'path'=>'./rule_provider/bilibili_domain',
-          'interval'=>86400
-        },
-      
-        'cn_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml',
-          'path'=>'./rule_provider/cn_domain',
-          'interval'=>86400
-        },
-      
-        'cn_ip'=>{
-          'type'=>'http',
-          'behavior'=>'ipcidr',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.yaml',
-          'path'=>'./rule_provider/cn_ip',
-          'interval'=>86400
-        },
-      
-        'github_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml',
-          'path'=>'./rule_provider/github_domain',
-          'interval'=>86400
-        },
-      
-        'google_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.yaml',
-          'path'=>'./rule_provider/google_domain',
-          'interval'=>86400
-        },
-      
-        'youtube_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml',
-          'path'=>'./rule_provider/youtube_domain',
-          'interval'=>86400
-        },
-      
-        'tiktok_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.yaml',
-          'path'=>'./rule_provider/tiktok_domain',
-          'interval'=>86400
-        },
-      
-        'netflix_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.yaml',
-          'path'=>'./rule_provider/netflix_domain',
-          'interval'=>86400
-        },
-      
-        'telegram_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.yaml',
-          'path'=>'./rule_provider/telegram_domain',
-          'interval'=>86400
-        },
-      
-        'gfw_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.yaml',
-          'path'=>'./rule_provider/gfw_domain',
-          'interval'=>86400
-        },
-      
-        'geolocation_nocn_domain'=>{
-          'type'=>'http',
-          'behavior'=>'domain',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml',
-          'path'=>'./rule_provider/geolocation_nocn_domain',
-          'interval'=>86400
-        },
-      
-        'google_ip'=>{
-          'type'=>'http',
-          'behavior'=>'ipcidr',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml',
-          'path'=>'./rule_provider/google_ip',
-          'interval'=>86400
-        },
-      
-        'netflix_ip'=>{
-          'type'=>'http',
-          'behavior'=>'ipcidr',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.yaml',
-          'path'=>'./rule_provider/netflix_ip',
-          'interval'=>86400
-        },
-      
-        'telegram_ip'=>{
-          'type'=>'http',
-          'behavior'=>'ipcidr',
-          'url'=>'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.yaml',
-          'path'=>'./rule_provider/telegram_ip',
-          'interval'=>86400
-        }
-      
+      Value['geodata-mode'] = true
+      Value['geosite-matcher'] = 'succinct'
+      Value['geodata-loader'] = 'memconservative'
+      Value['geo-auto-update'] = true
+      Value['geo-update-interval'] = 24
+      Value['geox-url'] = {
+        'geosite' => 'https://github.com/LINJIANPEI/mosdnsRules/releases/latest/download/geosite.dat',
+        'geoip' => 'https://github.com/LINJIANPEI/mosdnsRules/releases/latest/download/geoip.dat'
       }
 
       Value['rules'] = [
-        'RULE-SET,private_ip,🎯 国内代理',
-        'RULE-SET,private_domain,🎯 国内代理',
-        'RULE-SET,bilibili_domain,🎯 国内代理',
-        'RULE-SET,cn_domain,🎯 国内代理',
-        'RULE-SET,cn_ip,🎯 国内代理',
-      
-        'RULE-SET,github_domain,🚀 国外代理',
-        'RULE-SET,google_domain,🚀 国外代理',
-        'RULE-SET,youtube_domain,🚀 国外代理',
-        'RULE-SET,tiktok_domain,🚀 国外代理',
-        'RULE-SET,netflix_domain,🚀 国外代理',
-        'RULE-SET,telegram_domain,🚀 国外代理',
-        'RULE-SET,gfw_domain,🚀 国外代理',
-        'RULE-SET,geolocation_nocn_domain,🚀 国外代理',
-      
-        'RULE-SET,google_ip,🚀 国外代理',
-        'RULE-SET,netflix_ip,🚀 国外代理',
-        'RULE-SET,telegram_ip,🚀 国外代理',
-      
+        'GEOSITE,cn,🎯 国内代理',
+        'GEOIP,cn,🎯 国内代理',
+        'GEOSITE,cdn,🎯 国内代理',
+        'GEOSITE,nocn,🚀 国外代理',
+        'GEOIP,nocn,🚀 国外代理',
         'MATCH,🐟 漏网之鱼'
       ]
 
@@ -465,7 +329,7 @@ CONFIG_FILE="$1"
         }
       )
       
-      #Value.delete('dns')
+      Value.delete('rule-providers')
       Value['dns'] = {
         'enable'=>true,
         'listen'=>'0.0.0.0:7874',
