@@ -312,6 +312,8 @@ CONFIG_FILE="$1"
       }
 
       Value['rules'] = [
+        'GEOSITE,private,🎯 国内代理',
+        'GEOIP,private,🎯 国内代理',
         'GEOSITE,cn,🎯 国内代理',
         'GEOIP,cn,🎯 国内代理',
         'GEOSITE,cdn,🎯 国内代理',
