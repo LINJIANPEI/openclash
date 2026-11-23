@@ -307,18 +307,16 @@ CONFIG_FILE="$1"
       Value['geo-auto-update'] = true
       Value['geo-update-interval'] = 24
       Value['geox-url'] = {
-        'geosite' => 'https://github.com/LINJIANPEI/mosdnsRules/releases/latest/download/geosite.dat',
-        'geoip' => 'https://github.com/LINJIANPEI/mosdnsRules/releases/latest/download/geoip.dat'
+        'geosite' => 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat',
+        'geoip' => 'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat'
       }
 
       Value['rules'] = [
-        'GEOSITE,private,🎯 国内代理',
-        'GEOIP,private,🎯 国内代理',
+        #'GEOSITE,private,🎯 国内代理',
+        #'GEOIP,private,🎯 国内代理',
         'GEOSITE,cn,🎯 国内代理',
         'GEOIP,cn,🎯 国内代理',
-        'GEOSITE,cdn,🎯 国内代理',
-        'GEOSITE,nocn,🚀 国外代理',
-        'GEOIP,nocn,🚀 国外代理',
+        'GEOSITE,geolocation-!cn,🚀 国外代理',
         'MATCH,🐟 漏网之鱼'
       ]
 
@@ -330,10 +328,10 @@ CONFIG_FILE="$1"
             'ip-version'=>'ipv4-prefer'
         }
       )
-      
+      Value['tun']['dns-hijack']=[]
       Value.delete('rule-providers')
       Value['dns'] = {
-        'enable'=>true,
+        'enable'=>false,
         'listen'=>'0.0.0.0:7874',
         'cache-algorithm'=>'none',
         'ipv6'=>true,
@@ -343,7 +341,19 @@ CONFIG_FILE="$1"
         'default-nameserver'=>['tcp://127.0.0.1:5591','udp://127.0.0.1:5591'],
         'fallback'=>['tcp://127.0.0.1:5591','udp://127.0.0.1:5591']
       }
-
+      Value['sniffer'] = {
+        'enable'=>true,
+        'force-dns-mapping'=>true,
+        'parse-pure-ip'=>true,
+        'override-destination'=>false,
+        'sniff'=>{
+          'HTTP'=>{'ports':[80, 8080-8880],'override-destination'=>false},
+          'TLS'=>{'ports':[443, 8443]},
+          'QUIC'=>{'ports':[443, 8443]}
+        },
+        'force-domain'=>['+.netflix.com','+.nflxvideo.net','+.amazonaws.com','+.media.dssott.com'],
+        'skip-domain'=>['Mijia Cloud','dlg.io.mi.com','+.oray.com','+.sunlogin.net','+.push.apple.com']
+      }
 
 
       File.open('$CONFIG_FILE','w') { |f| YAML.dump(Value, f) }
